@@ -80,4 +80,4 @@ Este MVP é um ponto de partida. O plano integral do projeto inclui funcionalida
 
 ## Licença
 
-[Considere adicionar uma licença de código aberto, como MIT ou Apache 2.0]
+Este projeto está licenciado sob os termos da Licença MIT. Consulte o arquivo `LICENSE` no repositório para detalhes completos.

@@ -1,82 +1,82 @@
-# professor-IA
 # Assistente de Ensino IA com Google ADK
 
 ## Descrição do Projeto
 
 Este projeto implementa um assistente de ensino baseado em Inteligência Artificial utilizando o Google Agent Development Kit (ADK). O objetivo é criar um tutor virtual que pode ajudar usuários a aprenderem sobre diversas matérias, fornecendo mini-aulas, exercícios básicos e respondendo a perguntas.
 
-O assistente utiliza modelos de linguagem do Google Gemini e integra ferramentas para buscar informações, como Google Search e um placeholder para busca no YouTube, para enriquecer o conteúdo didático.
+O assistente utiliza modelos de linguagem do Google Gemini e integra ferramentas para buscar informações, como Google Search e a capacidade de integrar busca no YouTube, para enriquecer o conteúdo didático.
 
 ## Funcionalidades (MVP - Produto Mínimo Viável)
 
-* **Seleção de Matéria:** O usuário pode iniciar uma aula sobre uma matéria específica.
-* **Mini-Aulas:** O agente gera explicações básicas sobre tópicos dentro da matéria escolhida.
-* **Exercícios Básicos:** Geração de exercícios simples (múltipla escolha, verdadeiro/falso) relacionados ao conteúdo da mini-aula.
-* **Correção Simplificada:** Feedback básico sobre as respostas dos exercícios.
-* **Respostas a Perguntas:** O agente responde a perguntas gerais sobre a matéria.
-* **Busca de Informação:** Utiliza a ferramenta Google Search para complementar as respostas. (Placeholder para busca no YouTube incluído, com o código para implementação).
+O Produto Mínimo Viável (MVP) deste projeto demonstra as funcionalidades essenciais de um assistente de ensino interativo:
+
+* **Seleção de Matéria:** O usuário pode iniciar uma aula sobre uma matéria específica (ex: "iniciar aula sobre Matemática").
+* **Mini-Aulas:** O agente gera explicações básicas e concisas sobre tópicos fundamentais dentro da matéria escolhida.
+* **Exercícios Básicos:** Geração de 1 ou 2 exercícios simples por mini-aula (como múltipla escolha ou verdadeiro/falso) diretamente relacionados ao conteúdo apresentado.
+* **Correção Simplificada:** Fornecimento de feedback básico (ex: correto/incorreto) para as respostas dos exercícios.
+* **Respostas a Perguntas:** O agente responde a perguntas pontuais do usuário sobre o conteúdo da matéria, utilizando seu conhecimento e ferramentas de busca.
+* **Busca de Informação (Google Search):** O agente é capaz de usar a ferramenta Google Search para buscar informações adicionais que ajudem a gerar conteúdo ou responder a perguntas.
+* **Placeholder para Busca no YouTube:** A estrutura para integrar a busca de vídeos educativos no YouTube está presente no código, pronta para ser implementada.
 
 ## Tecnologias Utilizadas
 
 * Google Agent Development Kit (ADK)
 * Google Gemini API (através da biblioteca `google-genai`)
 * Python
-* Google Colab (ambiente de desenvolvimento)
-* Google Cloud Platform (para obter chaves de API)
-* YouTube Data API v3 (para futura integração de busca no YouTube)
-* Biblioteca `youtube-transcript-api` (para obter transcrições de vídeos do YouTube)
+* Google Colab (ambiente de desenvolvimento e execução)
+* APIs do Google (para funcionalidades como Google Search e, futuramente, busca no YouTube)
 
 ## Configuração e Execução
 
-Para configurar e executar este projeto, siga os passos abaixo no Google Colab:
+Para configurar e executar este projeto no Google Colab, siga os passos abaixo:
 
-1.  **Obtenha uma Chave de API do Google Gemini:**
-    * Vá para Google AI Studio ([https://aistudio.google.com/](https://aistudio.google.com/)) e obtenha uma chave de API para a Gemini API.
-    * No Google Colab, clique no ícone de chave (🔑) no painel esquerdo.
+1.  **Obtenha uma Chave de API para o Google Gemini:**
+    * Vá para Google AI Studio ([https://aistudio.google.com/](https://aistudio.google.com/)) e obtenha uma chave de API.
+    * No Google Colab, clique no ícone de chave (🔑) no painel esquerdo (Secrets).
     * Clique em "Adicionar novo Segredo".
-    * Nomeie o segredo como `GOOGLE_API_KEY` e cole sua chave de API obtida do Google AI Studio.
+    * Nomeie o segredo como `GOOGLE_API_KEY` e cole sua chave de API obtida.
 
-2.  **Obtenha uma Chave de API do YouTube Data API (Opcional para o MVP com placeholder, mas necessária para implementação completa):**
-    * Vá para o Google Cloud Console ([https://console.cloud.google.com/](https://console.cloud.google.com/)).
-    * Crie um novo projeto ou selecione um existente.
-    * No menu de navegação, vá para "APIs e Serviços" > "Biblioteca".
-    * Procure por "YouTube Data API v3" e clique em "Ativar".
-    * Vá para "APIs e Serviços" > "Credenciais".
-    * Clique em "Criar Credenciais" > "Chave de API".
-    * Copie a chave de API gerada.
-    * No Google Colab, no mesmo painel de Secrets, adicione um novo segredo chamado `YOUTUBE_API_KEY` e cole esta chave.
+2.  **Obtenha uma Chave de API para acesso ao YouTube (Opcional para o MVP):**
+    * Será necessária uma chave de API com acesso ao YouTube Data API para implementar a funcionalidade completa de busca no YouTube. Esta chave também deve ser armazenada nos Secrets do Colab (ex: como `YOUTUBE_API_KEY`).
 
-3.  **Execute os Blocos de Código no Google Colab:**
-    Copie e cole o código de cada "Parte" que desenvolvemos em células separadas no seu notebook Colab e execute-as na seguinte ordem:
+3.  **Prepare o Google Colab:**
+    * Crie um novo notebook no Google Colab.
+    * Crie células separadas para cada "Parte" do código conforme listado na seção "Estrutura do Projeto" abaixo.
 
-    * **Parte 1: Instalação e Configuração Inicial (Corrigida Novamente):** Instala as bibliotecas e configura as chaves de API a partir dos Secrets.
-    * **Parte 2: Função Auxiliar `call_agent`:** Define a função que auxilia na interação com o agente.
-    * **Parte 3: Definição das Ferramentas (Tools):** Define as ferramentas disponíveis para o agente (Google Search e placeholder para YouTube Tool). *Se você implementou a `youtube_tool` real, use esse código*.
-    * **Parte 4: Definição do Agente Tutor Essencial (`AgenteTutorEssencial`) (Refatorada):** Define a classe principal do agente com suas instruções e ferramentas. *Lembre-se de adicionar `youtube_tool` à lista `self.tools` se você a implementou na Parte 3 e atualizar a string `self.instruction` para guiar o agente a usar as ferramentas.*
-    * **Parte 5: Loop de Interação Principal (Antes da Persistência):** Este é o loop principal que interage com o usuário e o agente.
+4.  **Copie e Execute o Código por Partes:**
+    Copie o código de cada "Parte" (conforme desenvolvido e refinado durante o processo de criação do MVP) em suas respectivas células no Colab e execute-as **sequencialmente**. Certifique-se de que cada célula execute sem erros antes de ir para a próxima.
 
-4.  **Interaja com o Assistente:** Após executar todas as células necessárias, a célula da Parte 5 iniciará o loop de interação. Siga as instruções no console para interagir com o assistente. Digite "sair" para encerrar a conversa de forma segura.
+    * **Parte 1:** Instalação e Configuração Inicial.
+    * **Parte 2:** Função Auxiliar `call_agent`.
+    * **Parte 3:** Definição das Ferramentas (Google Search e placeholder para YouTube).
+    * **Parte 4:** Definição da classe `AgenteTutorEssencial` (instruções e ferramentas).
+    * **Parte 5:** Loop principal de interação e execução do Runner.
 
-## Estrutura do Projeto (Código em Células)
+5.  **Interaja com o Assistente:**
+    Após executar todas as células, a célula da Parte 5 iniciará o loop de interação no console do Colab. Siga as instruções apresentadas.
+    * Comece digitando algo como `iniciar aula sobre [nome da matéria]`.
+    * Para encerrar a conversa de forma segura, digite `sair`.
 
-O código do projeto está organizado nas seguintes partes (em células do Colab):
+## Estrutura do Projeto (Código em Células do Colab)
 
-* **Parte 1:** Setup inicial, instalação de bibliotecas, configuração de API Keys.
-* **Parte 2:** Função auxiliar `call_agent`.
-* **Parte 3:** Definição das Tools (Google Search, placeholder ou implementação de YouTube Tool).
-* **Parte 4:** Definição da classe `AgenteTutorEssencial` (instruções, tools).
-* **Parte 5:** Loop principal de interação, inicialização do Runner e gerenciamento da conversa.
+O código do projeto está organizado nas seguintes partes, destinadas a serem executadas em células separadas em um notebook Google Colab:
+
+* **Parte 1:** Setup inicial do ambiente, instalação de bibliotecas e configuração das chaves de API.
+* **Parte 2:** Definição da função auxiliar `call_agent` para simplificar a interação com os agentes.
+* **Parte 3:** Definição das ferramentas (`Google Search` e `youtube_tool` placeholder) que o agente pode utilizar.
+* **Parte 4:** Definição da classe `AgenteTutorEssencial` (instruções e ferramentas).
+* **Parte 5:** O loop principal do programa que gerencia a interface do usuário, inicializa o Runner para o agente e processa as interações turno a turno.
 
 ## Próximos Passos e Aprimoramentos (Plano Integral)
 
-Este MVP é um ponto de partida. O plano integral do projeto inclui funcionalidades mais avançadas:
+Este MVP funcional serve como base para um projeto mais ambicioso. O plano integral para o Assistente de Ensino IA inclui:
 
-* Implementação completa da busca e uso de conteúdo de vídeos do YouTube.
-* Sistema robusto de "Ficha do Aluno" com armazenamento persistente de progresso detalhado, notas, exercícios concluídos, etc., possivelmente usando um banco de dados.
-* Geração e correção de exercícios mais variados e complexos (dissertativas, práticos).
-* Planejamento de grade curricular e geração de aulas mais estruturadas.
-* Implementação da arquitetura de múltiplos agentes (Formulador de Plano de Aula, Elaborador de Exercícios, Professor) para orquestrar o fluxo de ensino.
-* Mecanismos mais sofisticados de adaptação ao nível e estilo de aprendizado do aluno.
+* **Implementação Completa da Ferramenta YouTube:** Desenvolver a lógica na `youtube_tool` para buscar e processar dados de vídeos (títulos, descrições, transcrições) de forma eficaz para uso pelo agente.
+* **Sistema Robusto de Ficha do Aluno:** Implementar um sistema de armazenamento persistente (como um banco de dados SQLite ou similar) para a "ficha do aluno", registrando progresso detalhado, tópicos concluídos, desempenho em exercícios e nível do aluno ao longo do tempo.
+* **Geração e Correção de Exercícios Avançados:** Expandir a capacidade de gerar tipos de exercícios mais complexos (dissertativas, práticos, baseados em formatos específicos como ENEM) e desenvolver lógica de correção mais sofisticada.
+* **Planejamento de Currículo e Aulas Estruturadas:** Permitir que o agente crie planos de estudo e aulas mais detalhadas e sequenciais com base em um currículo definido e no progresso do aluno.
+* **Arquitetura Multi-Agente:** Reorganizar o projeto para utilizar múltiplos agentes especializados (por exemplo, um agente para planejamento, um para criação de exercícios, um para correção) trabalhando em conjunto.
+* **Adaptação Pedagógica:** Desenvolver mecanismos para que o agente adapte seu estilo de ensino, a dificuldade do conteúdo e os exercícios com base no desempenho e nas necessidades do aluno registradas na ficha.
 
 ## Licença
 
